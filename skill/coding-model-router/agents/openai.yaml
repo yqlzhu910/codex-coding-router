@@ -1,0 +1,7 @@
+interface:
+  display_name: "Coding Model Router"
+  short_description: "Route coding tasks to the right agent"
+  default_prompt: "Use $coding-model-router to route this coding task to the appropriate agent."
+
+policy:
+  allow_implicit_invocation: true

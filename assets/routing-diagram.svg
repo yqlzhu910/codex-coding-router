@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Codex Coding Router architecture</title>
+  <desc id="desc">A coding task enters a router and is assigned to the primary agent, code reader, code worker, or code expert. Workspace-writing agents pass through a single-writer gate.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07111f"/>
+      <stop offset="1" stop-color="#121633"/>
+    </linearGradient>
+    <linearGradient id="router" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1fcce9"/>
+      <stop offset="1" stop-color="#7762ff"/>
+    </linearGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="#91a8d4" stroke-opacity="0.055"/>
+    </pattern>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#020713" flood-opacity="0.65"/>
+    </filter>
+    <marker id="arrowCyan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5 0 10Z" fill="#4bdcf3"/>
+    </marker>
+    <marker id="arrowMuted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5 0 10Z" fill="#7289b2"/>
+    </marker>
+    <marker id="arrowViolet" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5 0 10Z" fill="#aa8cff"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="700" rx="22" fill="url(#background)"/>
+  <rect width="1200" height="700" rx="22" fill="url(#grid)"/>
+
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <text x="50" y="45" fill="#eef5ff" font-size="25" font-weight="720">Routing architecture</text>
+    <text x="50" y="72" fill="#8298bc" font-size="14">Evidence may fan out. Workspace writes pass through one gate.</text>
+
+    <g filter="url(#shadow)">
+      <rect x="70" y="105" width="230" height="82" rx="18" fill="#111d37" stroke="#3b527c"/>
+      <circle cx="108" cy="146" r="15" fill="#1b3157" stroke="#7da0d8"/>
+      <path d="M101 146H115M108 139V153" stroke="#dbe9ff" stroke-width="2.5" stroke-linecap="round"/>
+      <text x="138" y="141" fill="#f0f6ff" font-size="18" font-weight="700">CODING TASK</text>
+      <text x="138" y="165" fill="#8299bd" font-size="13">scope + constraints</text>
+
+      <rect x="475" y="105" width="250" height="82" rx="18" fill="#101d38" stroke="url(#router)" stroke-width="2.5"/>
+      <path d="M510 135H542M510 156H542" stroke="#e4faff" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="517" cy="135" r="6" fill="#42d9f2"/>
+      <circle cx="535" cy="156" r="6" fill="#9e83ff"/>
+      <text x="568" y="141" fill="#f0f6ff" font-size="18" font-weight="700">ROUTER</text>
+      <text x="568" y="165" fill="#91a7ca" font-size="13">classify before acting</text>
+    </g>
+
+    <path d="M300 146H462" fill="none" stroke="#4bdcf3" stroke-width="2.5" marker-end="url(#arrowCyan)"/>
+
+    <g fill="none" stroke="#7289b2" stroke-width="2">
+      <path d="M540 187V215H155V242" marker-end="url(#arrowMuted)"/>
+      <path d="M580 187V222H430V242" marker-end="url(#arrowMuted)"/>
+      <path d="M620 187V222H705V242" marker-end="url(#arrowMuted)"/>
+      <path d="M660 187V215H980V242" marker-end="url(#arrowMuted)"/>
+    </g>
+
+    <g filter="url(#shadow)">
+      <g transform="translate(40 245)">
+        <rect width="230" height="150" rx="18" fill="#121e37" stroke="#50658a"/>
+        <rect width="230" height="7" rx="3.5" fill="#7890b9"/>
+        <text x="22" y="40" fill="#dfe9f8" font-size="13" font-weight="650" letter-spacing="1.4">PRIMARY AGENT</text>
+        <text x="22" y="70" fill="#ffffff" font-size="19" font-weight="720">Tiny task</text>
+        <text x="22" y="97" fill="#8ea1c1" font-size="13">context-complete</text>
+        <text x="22" y="121" fill="#8ea1c1" font-size="13">no delegation needed</text>
+      </g>
+
+      <g transform="translate(315 245)">
+        <rect width="230" height="150" rx="18" fill="#0c2533" stroke="#27839a"/>
+        <rect width="230" height="7" rx="3.5" fill="#41d8ef"/>
+        <text x="22" y="40" fill="#8be9f7" font-size="13" font-weight="650" letter-spacing="1.2">CODE_READER</text>
+        <text x="22" y="70" fill="#effdff" font-size="19" font-weight="720">Read-only evidence</text>
+        <text x="22" y="97" fill="#79a8b4" font-size="13">references · call chains</text>
+        <text x="22" y="121" fill="#79a8b4" font-size="13">logs · compiler output</text>
+      </g>
+
+      <g transform="translate(590 245)">
+        <rect width="230" height="150" rx="18" fill="#2a2415" stroke="#806526"/>
+        <rect width="230" height="7" rx="3.5" fill="#ffc85a"/>
+        <text x="22" y="40" fill="#ffd77f" font-size="13" font-weight="650" letter-spacing="1.2">CODE_WORKER</text>
+        <text x="22" y="70" fill="#fff8e5" font-size="19" font-weight="720">Bounded write</text>
+        <text x="22" y="97" fill="#b9a16b" font-size="13">fully specified</text>
+        <text x="22" y="121" fill="#b9a16b" font-size="13">local · mechanical</text>
+      </g>
+
+      <g transform="translate(865 245)">
+        <rect width="230" height="150" rx="18" fill="#251b42" stroke="#7154b5"/>
+        <rect width="230" height="7" rx="3.5" fill="#a987ff"/>
+        <text x="22" y="40" fill="#c9b5ff" font-size="13" font-weight="650" letter-spacing="1.2">CODE_EXPERT</text>
+        <text x="22" y="70" fill="#f7f3ff" font-size="19" font-weight="720">Difficult work</text>
+        <text x="22" y="97" fill="#a99ac7" font-size="13">algorithms · architecture</text>
+        <text x="22" y="121" fill="#a99ac7" font-size="13">performance · safety</text>
+      </g>
+    </g>
+
+    <path d="M545 304C670 205 810 207 878 258" fill="none" stroke="#aa8cff" stroke-width="2" stroke-dasharray="7 7" marker-end="url(#arrowViolet)"/>
+    <text x="705" y="214" text-anchor="middle" fill="#a995d7" font-size="12" font-weight="650">reader escalates with evidence</text>
+
+    <path d="M820 337H852" fill="none" stroke="#aa8cff" stroke-width="2" stroke-dasharray="6 6" marker-end="url(#arrowViolet)"/>
+    <text x="836" y="323" text-anchor="middle" fill="#a995d7" font-size="11">escalate</text>
+
+    <g filter="url(#shadow)">
+      <rect x="40" y="488" width="230" height="94" rx="17" fill="#111d35" stroke="#465b80"/>
+      <text x="155" y="522" text-anchor="middle" fill="#dce7f8" font-size="14" font-weight="700">DIRECT RESPONSE</text>
+      <text x="155" y="550" text-anchor="middle" fill="#8297b8" font-size="13">primary stays primary</text>
+
+      <rect x="315" y="488" width="230" height="94" rx="17" fill="#0c2533" stroke="#277d92"/>
+      <text x="430" y="522" text-anchor="middle" fill="#a6f1fa" font-size="14" font-weight="700">EVIDENCE LANE</text>
+      <text x="430" y="550" text-anchor="middle" fill="#76a6b3" font-size="13">independent reads may parallelize</text>
+
+      <rect x="590" y="468" width="505" height="134" rx="21" fill="#131b35" stroke="url(#router)" stroke-width="2.5"/>
+      <rect x="610" y="488" width="465" height="38" rx="12" fill="#1a2749"/>
+      <path d="M705 526V553M980 526V553" stroke="#748ab0" stroke-width="2"/>
+      <circle cx="705" cy="553" r="11" fill="#ffc85a"/>
+      <circle cx="980" cy="553" r="11" fill="#a987ff"/>
+      <rect x="813" y="535" width="62" height="36" rx="9" fill="#0d1730" stroke="#d4e2fa"/>
+      <path d="M829 553H859" stroke="#d4e2fa" stroke-width="3" stroke-linecap="round"/>
+      <text x="842" y="514" text-anchor="middle" fill="#eef5ff" font-size="15" font-weight="750" letter-spacing="1.1">SINGLE-WRITER GATE</text>
+      <text x="842" y="588" text-anchor="middle" fill="#8da1c2" font-size="13">code_worker XOR code_expert · never concurrent</text>
+    </g>
+
+    <path d="M155 395V476" fill="none" stroke="#7289b2" stroke-width="2" marker-end="url(#arrowMuted)"/>
+    <path d="M430 395V476" fill="none" stroke="#4bdcf3" stroke-width="2" marker-end="url(#arrowCyan)"/>
+    <path d="M705 395V455" fill="none" stroke="#ffc85a" stroke-width="2.2" marker-end="url(#arrowMuted)"/>
+    <path d="M980 395V455" fill="none" stroke="#aa8cff" stroke-width="2.2" marker-end="url(#arrowViolet)"/>
+
+    <g transform="translate(50 640)">
+      <circle cx="7" cy="7" r="7" fill="#42d9f2"/>
+      <text x="24" y="12" fill="#92a6c7" font-size="13">Facts, inferences, and unverified risks stay distinct.</text>
+      <circle cx="485" cy="7" r="7" fill="#ffc85a"/>
+      <text x="502" y="12" fill="#92a6c7" font-size="13">Build evidence is not runtime proof.</text>
+      <circle cx="838" cy="7" r="7" fill="#a987ff"/>
+      <text x="855" y="12" fill="#92a6c7" font-size="13">Complex work never downgrades.</text>
+    </g>
+  </g>
+</svg>

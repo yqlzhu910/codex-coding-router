@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Codex Coding Router</title>
+  <desc id="desc">A dark technology banner showing a central router connected to reader, worker, and expert agents.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07111f"/>
+      <stop offset="0.55" stop-color="#0d1730"/>
+      <stop offset="1" stop-color="#17133a"/>
+    </linearGradient>
+    <linearGradient id="routerFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#21d4fd"/>
+      <stop offset="1" stop-color="#7b61ff"/>
+    </linearGradient>
+    <linearGradient id="titleFill" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f7fbff"/>
+      <stop offset="0.72" stop-color="#d7e4ff"/>
+      <stop offset="1" stop-color="#b6a8ff"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#8aa4d6" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#020712" flood-opacity="0.7"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="360" rx="24" fill="url(#background)"/>
+  <rect width="1200" height="360" rx="24" fill="url(#grid)"/>
+  <circle cx="1080" cy="-30" r="250" fill="#725cff" opacity="0.09"/>
+  <circle cx="1010" cy="390" r="210" fill="#1fd6ff" opacity="0.06"/>
+  <path d="M0 318 C220 268 360 356 560 310 S920 262 1200 310 V360 H0Z" fill="#182451" opacity="0.32"/>
+
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <g transform="translate(70 66)">
+      <rect width="180" height="30" rx="15" fill="#13264a" stroke="#2c4775"/>
+      <circle cx="17" cy="15" r="5" fill="#42e5ff" filter="url(#softGlow)"/>
+      <text x="31" y="20" fill="#bcd4ff" font-size="13" font-weight="600" letter-spacing="1.4">WINDOWS-FIRST</text>
+    </g>
+
+    <text x="68" y="147" fill="url(#titleFill)" font-size="55" font-weight="720" letter-spacing="-1.5">Codex Coding Router</text>
+    <text x="71" y="194" fill="#91a7cc" font-size="22" font-weight="400">Route the task. Match the agent. Serialize the write.</text>
+
+    <g transform="translate(70 238)">
+      <rect width="138" height="34" rx="17" fill="#0d2635" stroke="#1b6e82"/>
+      <text x="69" y="22" text-anchor="middle" fill="#54ddf6" font-size="13" font-weight="650">READ-ONLY</text>
+    </g>
+    <g transform="translate(220 238)">
+      <rect width="148" height="34" rx="17" fill="#2a2415" stroke="#76602a"/>
+      <text x="74" y="22" text-anchor="middle" fill="#ffc85c" font-size="13" font-weight="650">SMALL WRITE</text>
+    </g>
+    <g transform="translate(380 238)">
+      <rect width="142" height="34" rx="17" fill="#261c42" stroke="#694fb0"/>
+      <text x="71" y="22" text-anchor="middle" fill="#b89cff" font-size="13" font-weight="650">DEEP WORK</text>
+    </g>
+  </g>
+
+  <g filter="url(#shadow)">
+    <path d="M890 101 L948 134 L948 200 L890 233 L832 200 L832 134Z" fill="#0b1730" stroke="url(#routerFill)" stroke-width="3"/>
+    <path d="M865 155 H915 M865 177 H915" stroke="#d9f8ff" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="872" cy="155" r="7" fill="#32daf9"/>
+    <circle cx="908" cy="177" r="7" fill="#9a7cff"/>
+    <text x="890" y="261" text-anchor="middle" fill="#dce9ff" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="650" letter-spacing="1.2">ROUTER</text>
+  </g>
+
+  <g fill="none" stroke-width="2">
+    <path d="M832 150 C780 128 752 102 714 92" stroke="#36d9f5"/>
+    <path d="M832 168 C766 168 742 168 704 168" stroke="#ffc85c"/>
+    <path d="M832 190 C784 214 758 238 718 252" stroke="#a887ff"/>
+    <path d="M948 151 C1010 128 1032 104 1067 91" stroke="#36d9f5" stroke-opacity="0.35" stroke-dasharray="5 7"/>
+    <path d="M948 188 C1014 216 1038 239 1072 259" stroke="#a887ff" stroke-opacity="0.35" stroke-dasharray="5 7"/>
+  </g>
+
+  <g font-family="Segoe UI, Arial, sans-serif" filter="url(#shadow)">
+    <g transform="translate(610 50)">
+      <rect width="150" height="72" rx="15" fill="#0c2433" stroke="#21859b"/>
+      <circle cx="25" cy="25" r="8" fill="#35dcf6"/>
+      <text x="45" y="30" fill="#ddfaff" font-size="16" font-weight="700">READER</text>
+      <text x="24" y="54" fill="#79a8b5" font-size="12">evidence only</text>
+    </g>
+    <g transform="translate(592 132)">
+      <rect width="166" height="72" rx="15" fill="#2a2415" stroke="#7b6225"/>
+      <circle cx="25" cy="25" r="8" fill="#ffc857"/>
+      <text x="45" y="30" fill="#fff1c8" font-size="16" font-weight="700">WORKER</text>
+      <text x="24" y="54" fill="#b9a16a" font-size="12">bounded edits</text>
+    </g>
+    <g transform="translate(615 218)">
+      <rect width="154" height="72" rx="15" fill="#241a42" stroke="#674daa"/>
+      <circle cx="25" cy="25" r="8" fill="#a986ff"/>
+      <text x="45" y="30" fill="#f0e9ff" font-size="16" font-weight="700">EXPERT</text>
+      <text x="24" y="54" fill="#a494c5" font-size="12">difficult work</text>
+    </g>
+  </g>
+
+  <g transform="translate(1010 128)" font-family="Segoe UI, Arial, sans-serif">
+    <rect width="135" height="80" rx="16" fill="#111d38" stroke="#40547b"/>
+    <path d="M24 41 H111" stroke="#7f95bd" stroke-width="2"/>
+    <circle cx="42" cy="41" r="8" fill="#ffc857"/>
+    <circle cx="103" cy="41" r="8" fill="#a986ff"/>
+    <rect x="60" y="28" width="25" height="26" rx="6" fill="#1c2b4d" stroke="#d6e2fa"/>
+    <text x="67" y="69" text-anchor="middle" fill="#9eb1d3" font-size="11" font-weight="650">ONE WRITER</text>
+  </g>
+</svg>
