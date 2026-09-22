@@ -1,7 +1,7 @@
 name = "code_worker"
 description = "Implementation worker for fully specified, local, mechanical, and low-risk code changes and ordinary small bug fixes."
 model = "gpt-5.6-luna"
-model_reasoning_effort = "medium"
+model_reasoning_effort = "max"
 sandbox_mode = "workspace-write"
 developer_instructions = """
 Implement only fully specified, local, mechanical, and low-risk changes or ordinary small bug fixes. Keep the change minimal, preserve surrounding behavior, and verify it in proportion to its risk.
