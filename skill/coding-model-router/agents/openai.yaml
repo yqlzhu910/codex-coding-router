@@ -1,7 +1,7 @@
 interface:
   display_name: "Coding Model Router"
-  short_description: "Route coding tasks to the right agent"
-  default_prompt: "Use $coding-model-router to route this coding task to the appropriate agent."
+  short_description: "Choose useful, bounded coding delegation"
+  default_prompt: "Use $coding-model-router to decide whether this task benefits from delegation and select roles only for useful independent subtasks."
 
 policy:
   allow_implicit_invocation: true

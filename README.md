@@ -9,11 +9,11 @@
 
 # Codex Coding Router
 
-Codex Coding Router is a portable Skill and three-agent package for assigning
-repository work to the smallest suitable coding agent. It keeps read-only
-discovery separate from workspace writes, escalates difficult work instead of
-stretching a lightweight worker beyond its role, and permits only one writer at
-a time.
+Codex Coding Router is a portable Skill and three-agent package for useful,
+bounded delegation. The primary agent owns analysis, implementation, and
+verification by default, including difficult work. Delegate only when a
+separable subtask provides useful independent evidence, context savings, or
+execution savings. Workspace writes remain serialized.
 
 ![Routing architecture](assets/routing-diagram.svg)
 
@@ -21,27 +21,26 @@ a time.
 
 | Task shape | Route | Model | Reasoning | Sandbox |
 |---|---|---|---|---|
-| Tiny, context-complete task | Primary agent | Your current primary model | Current setting | Current setting |
-| Large read-only discovery, references, call chains, logs, build evidence | `code_reader` | `gpt-5.6-luna` | `medium` | `read-only` |
-| Fully specified local edit or ordinary small bug | `code_worker` | `gpt-5.6-luna` | `medium` | `workspace-write` |
-| Algorithms, architecture, cross-module work, performance, memory safety, concurrency, numerical methods, geometry, voxels, or difficult debugging | `code_expert` | `gpt-5.6-sol` | `high` | `workspace-write` |
+| Default: analysis, implementation, tests, builds, and difficult reasoning | Primary agent | Your current primary model | Current setting | Current setting |
+| Independent read-only definitions, references, call chains, or log evidence | `code_reader` | `gpt-5.6-luna` | `max` | `read-only` |
+| Fully specified mechanical changes or routine execution worth delegating | `code_worker` | `gpt-5.6-luna` | `max` | `workspace-write` |
+| Bounded independent difficult analysis, assigned implementation, or requested expert review | `code_expert` | `gpt-6-astra` | `xhigh` | `workspace-write` |
 
 The router preserves explicit agent choices and read-only constraints. It does
 not change the primary model.
 
-### Escalation and write serialization
+### Delegation and write serialization
 
-- `code_reader` gathers evidence only. If the evidence reveals difficult
-  reasoning or a required change, preserve it and escalate to `code_expert`.
-- `code_worker` handles bounded, mechanical work. If scope becomes difficult
-  or unclear, stop it and pass its evidence and exact changes to
-  `code_expert`.
-- Complex implementation never moves back from `code_expert` to
-  `code_worker`.
+- Complexity, testing, and file count alone do not trigger delegation.
+- `code_reader` gathers evidence only. `code_worker` handles fully specified
+  mechanical work and routine execution. Both return out-of-scope questions
+  and evidence to the primary agent; workers also report exact changes.
+- `code_expert` is an optional peer, not a mandatory escalation destination.
+  Subagents do not delegate further.
 - Only mutually independent read-only work may run in parallel.
 - Wait for related readers before starting a writer.
 - Never run `code_worker` and `code_expert` concurrently. At most one agent may
-  write to a workspace.
+  write to a workspace, including the primary agent.
 - No agent stages or commits unless the user explicitly requests it.
 
 ## Manual installation
@@ -145,10 +144,12 @@ block if it conflicts with your global rules.
 ```markdown
 ## Coding model routing
 
-- Use $coding-model-router for substantive repository coding work.
+- Use $coding-model-router when choosing roles for useful, separable delegated work or when explicitly requested.
+- Let the primary agent handle analysis, implementation, tests, and fixes by default; complexity alone does not require delegation.
 - Run parallel agents only for mutually independent read-only tasks.
 - Wait for related readers before starting a writer.
-- Never run more than one workspace-writing agent.
+- Never run more than one workspace-writing agent, including the primary agent.
+- Never run code_worker and code_expert concurrently. Honor explicit agent selection and read-only requests.
 ```
 
 ## Using the router
@@ -158,7 +159,7 @@ block if it conflicts with your global rules.
 Name the Skill in your request:
 
 ```text
-Use $coding-model-router to trace this call chain and implement the smallest verified fix.
+Use $coding-model-router to decide whether this investigation benefits from an independent read-only subtask.
 ```
 
 You may also request a specific agent or a read-only investigation. Explicit
@@ -174,9 +175,10 @@ policy:
   allow_implicit_invocation: true
 ```
 
-With this default, Codex may invoke the Skill when its description matches a
-substantive coding task. Automatic invocation is contextual, not a guarantee
-that every request will spawn an agent.
+With this default, Codex may invoke the Skill when useful, bounded delegation
+matches its description. Invoking the Skill does not require spawning an agent.
+Ordinary local changes, tests, builds, and difficult reasoning are not automatic
+routing triggers.
 
 To disable implicit invocation, manually open the installed file at
 `%USERPROFILE%\.agents\skills\coding-model-router\agents\openai.yaml` and change
@@ -193,11 +195,14 @@ does not remove any optional reminder you manually added to global
 
 ## Model availability
 
-The package references `gpt-5.6-luna` and `gpt-5.6-sol`. Model IDs and custom
+The package references `gpt-5.6-luna` (`max`) and `gpt-6-astra` (`xhigh`). Model IDs and custom
 agent support can vary by Codex version, account, organization, region, and
 rollout. Availability is not guaranteed. If an ID is unavailable, choose a
 model your environment supports and preserve each agent's responsibility,
-reasoning level, and sandbox boundary.
+supported reasoning level, and sandbox boundary. The current session's tool
+schema and available roles take priority over old examples. Do not assume a
+full-history fork accepts model or reasoning overrides. Configuration changes
+do not prove that an existing task reloaded them; check in a new task.
 
 ## Security and compatibility
 

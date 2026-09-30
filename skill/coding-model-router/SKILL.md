@@ -1,63 +1,34 @@
 ---
 name: coding-model-router
-description: Use when Codex needs to read, search, modify, debug, test, refactor, optimize, or architect code in a repository and the work is more than a brief explanation of short, self-contained code already pasted by the user.
+description: Select roles for bounded, separable coding subtasks when delegation has a concrete benefit or the user explicitly requests routing.
 ---
 
 # Coding Model Router
 
-## Overview
+Keep the primary agent responsible for the requested outcome, including difficult analysis, implementation, necessary checks, and corrections. Invoking this skill does not require spawning an agent.
 
-Route substantive coding work to the smallest suitable surface. Keep tiny,
-context-complete work in the primary agent, and preserve facts, inferences, and
-unverified risks as distinct categories throughout the task.
+## Decide Whether to Delegate
 
-## Classify Before Acting
+Use delegation for a concrete subtask that can be separated from the primary agent's useful work: independent evidence gathering, a sufficiently large fully specified mechanical batch, or an independent review.
 
-| Task shape | Route |
+Keep focused searches, configuration changes, local fixes, routine tests and builds, and closely coupled algorithm or debugging work in the primary agent. Complexity, testing, and file count alone are not delegation triggers. If a handoff adds more coordination than value, continue directly.
+
+## Choose a Role
+
+| Bounded subtask | Role |
 |---|---|
-| Short pasted-code explanation or tiny context-complete non-workspace task | Primary agent |
-| Large read-only search, reference discovery, call-chain mapping, logs, or build errors | `code_reader` |
-| Fully specified local mechanical edit or ordinary small bug | `code_worker` |
-| Algorithms, architecture, cross-module work, performance, memory safety, undefined behavior, SIMD, OpenMP, concurrency, numerical methods, computational geometry, voxels, spatial indexes, or difficult debugging | `code_expert` |
+| Independent read-only definitions, references, call chains, or log evidence | `code_reader` |
+| Fully specified mechanical changes or routine execution whose size or duration makes delegation useful | `code_worker` |
+| Independent difficult analysis, an explicitly assigned implementation, or requested expert review | `code_expert` |
 
-Route a requested workspace modification to `code_worker` even when the exact
-line is already known. Keep it in the primary agent only when the user
-explicitly selects the primary agent or delegation is unavailable.
+The expert role is an optional peer, not a mandatory escalation destination. Readers and workers return evidence and out-of-scope decisions to the primary agent.
 
-Honor explicit agent selection and read-only constraints. Do not create agents
-for appearances.
+## Dispatch Boundaries
 
-## Delegate From Evidence
-
-1. State the classification evidence.
-2. Give the selected agent the goal, relevant evidence, exact scope, and
-   required validation.
-3. Wait for its result and independently verify material claims.
-
-Use parallel agents only for mutually independent read-only work. A single
-`code_reader` is the default; add another reader only when the searches can be
-cleanly partitioned and parallel work materially helps.
-
-## Escalate Without Losing Evidence
-
-- When a reader finds complex reasoning or modification is required, preserve
-  its evidence and escalate the work to `code_expert`.
-- When a worker reaches difficult or unclear scope, stop the worker and
-  escalate its evidence and exact working-tree changes to `code_expert`.
-- Never hand complex implementation from `code_expert` back to `code_worker`.
-
-## Serialize Workspace Writes
-
-- Wait for related read-only work before starting a writer.
-- Never run `code_worker` and `code_expert` concurrently.
-- Never run more than one workspace-writing agent.
-- If a writer is active, wait for it to stop before starting another writer.
-- Do not allow multiple agents to modify the same checkout concurrently.
-
-## Boundaries
-
-- Never change the primary model as part of routing.
-- Never stage or commit changes unless the user explicitly requests it.
-- Treat compilation and linking as build evidence, not runtime, correctness, or
-  performance proof.
-- Keep facts, inferences, and unverified risks distinct.
+- State the expected benefit and give the selected agent its exact goal, scope, evidence, ownership, and validation requirements.
+- Honor explicit user-selected agents and read-only constraints. Check currently available role/model definitions before dispatch; do not change the primary model merely to route work.
+- Use the current tool schema for fork, model, and reasoning parameters. Old examples do not establish that full-history forks accept overrides.
+- Parallelize only mutually independent read-only tasks. Before writing, wait for readers whose evidence depends on the files being changed.
+- Allow one workspace writer at a time, including the primary agent. Never run `code_worker` and `code_expert` concurrently. Tell writers that they are not alone and must preserve others' edits.
+- Subagents do not delegate further or broaden the task. Review their evidence before relying on material conclusions; repeat verification only for an unresolved concern.
+- Do not stage or commit changes unless explicitly requested. Keep static, build, runtime, visual, and performance evidence distinct.

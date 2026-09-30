@@ -45,7 +45,7 @@
     </g>
 
     <text x="68" y="147" fill="url(#titleFill)" font-size="55" font-weight="720" letter-spacing="-1.5">Codex Coding Router</text>
-    <text x="71" y="194" fill="#91a7cc" font-size="22" font-weight="400">Route the task. Match the agent. Serialize the write.</text>
+    <text x="71" y="194" fill="#91a7cc" font-size="22" font-weight="400">Primary first. Delegate when useful. One writer.</text>
 
     <g transform="translate(70 238)">
       <rect width="138" height="34" rx="17" fill="#0d2635" stroke="#1b6e82"/>
@@ -94,7 +94,7 @@
       <rect width="154" height="72" rx="15" fill="#241a42" stroke="#674daa"/>
       <circle cx="25" cy="25" r="8" fill="#a986ff"/>
       <text x="45" y="30" fill="#f0e9ff" font-size="16" font-weight="700">EXPERT</text>
-      <text x="24" y="54" fill="#a494c5" font-size="12">difficult work</text>
+      <text x="24" y="54" fill="#a494c5" font-size="12">optional specialist</text>
     </g>
   </g>
 
